@@ -1,0 +1,25 @@
+			<Router>
+				<Header />
+				<Routes>
+					<Route path="/agents" component={<CharacterView />} />
+					<Route path="/maps" component={<MapView />} />
+					<Route path="/weapons" component={<WeaponView />} />
+					<Route path="/" component={<MainMenu />} />
+					<Route component={<PageNotFound />} />
+				</Routes>
+				<Footer />
+			</Router>
+
+
+				extraReducers: {
+		[fetchAsyncAgents.pending]: () => {
+			console.log('Pending');
+		},
+	},
+	[fetchAsyncAgents.fulfilled]: (state, { payload }) => {
+		console.log('Fetched Successfully');
+		return { ...state, agents: payload };
+	},
+	[fetchAsyncAgents.rejected]: () => {
+		console.log('Failed');
+	},
